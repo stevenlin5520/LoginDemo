@@ -1,0 +1,40 @@
+page{
+	width: 100%;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content: flex-start;
+	align-items:center;
+}
+.img{
+	width: 180rpx;
+	height: 180rpx;
+	background-size: cover;
+	margin-top: 300rpx;
+}
+.line{
+	width: 600rpx;
+	height: 2rpx;
+	background-color: grey;
+	margin: 50rpx 0 30rpx 0;
+}
+.title{
+	width: 500rpx;
+	height: 70rpx;
+	font-size: 35rpx;
+}
+.content{
+	width: 500rpx;
+	height: 70rpx;
+	font-size: 30rpx;
+	color: grey;
+}
+.btn{
+	width: 600rpx;
+	height: 70rpx;
+	font-size: 30rpx;
+	line-height: 70rpx;
+	color: #FFF;
+	background-color: #2DC100;
+	border-radius: 70rpx;
+}

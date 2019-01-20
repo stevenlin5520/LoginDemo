@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "global/login/index",
+    "main/index/index",
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "networkTimeout": {
+    "request": 6000,
+    "connectSocket": 6000,
+    "uploadFile": 6000,
+    "downloadFile": 6000
+  }
+}

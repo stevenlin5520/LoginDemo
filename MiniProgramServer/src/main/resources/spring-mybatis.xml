@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd" >
+		
+	<!-- Spring与Mybatis整合 -->
+	    
+    
+    <!-- 自动扫描 -->  
+    <context:component-scan base-package="com.steven.demo" />  
+    
+    <!-- 引用本地配置文件jdbc.properties -->  
+    <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location" value="classpath:jdbc.properties" />  
+    </bean>  --> 
+    
+    
+	<!-- 引用本地配置文件jdbc.properties -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 引入数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="user" value="${jdbc.username}"></property>
+			<property name="password" value="${jdbc.password}"></property>
+			<property name="jdbcUrl" value="${jdbc.url}"></property>
+			<property name="driverClass" value="${jdbc.driverClass}"></property>
+	</bean>
+	
+	<!--  配置SqlSessionFactoryBean工厂，将SqlSessionFactory交给Spring MVC管理	-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 采用扫描 包的 形式 ， 包下面所有接口都生成代理类
+		将SqlSessionFactory的bean名字引入，开启mapper包的扫描
+		不再需要引入sqlMapConfig.xml文件
+		 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.steven.demo.dao" ></property>
+		<!-- <property name="basePackage" value="com.steven.demo.dao" ></property> -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	
+	<!-- 开启事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 配置增强 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*"/>
+			<tx:method name="save*"/>
+			<tx:method name="find*"/>
+			<tx:method name="select*"/>
+			<tx:method name="query*"/>
+			<tx:method name="update*"/>
+			<tx:method name="edit*"/>
+			<tx:method name="delete*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 配置切面 -->
+	<aop:config >
+		<aop:pointcut expression="execution(* com.steven.demo.services.*.*(..))" id="pointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>
+	</aop:config>
+	
+</beans>
