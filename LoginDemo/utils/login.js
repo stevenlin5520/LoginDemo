@@ -15,8 +15,6 @@ function login(){
       // 发送 res.code 到后台换取 openId, sessionKey,返回openid保存
       wx.request({
         url: 'http://192.168.0.240:8080/MiniProgramServer/login/login',
-        // url: 'http://231q021j08.imwork.net/SSMDemo/loginCon/login',
-        // url: 'https://psfd.handbbc.com/SSMDemo/loginCon/login',
         data: {
           code: res.code,
           // 将用户信息传到服务器保存

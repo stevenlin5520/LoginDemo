@@ -1,3 +1,5 @@
+<!-- 这是登录页面 global/login/index -->
+
 <image class="img" src="/assets/img/wechat.png" mode="scaleToFill"></image>
 
 <view class="line"></view>

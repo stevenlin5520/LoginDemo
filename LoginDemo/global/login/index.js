@@ -11,14 +11,6 @@ Page({
     canIUse: wx.canIUse("button.open-type=getUserInfo")
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
-
-
   // 用户授权
   bindGetUserInfo: (res) => {
     console.log("bindGetUserInfo获取权限",res)

@@ -1,8 +1,7 @@
 {
   "pages":[
     "global/login/index",
-    "main/index/index",
-    "pages/index/index"
+    "main/index/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

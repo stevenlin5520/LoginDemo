@@ -44,12 +44,7 @@ App({
             }
           })
         }
-        // else{
-        // 	// 跳转授权页面
-        // 	wx.redirectTo({
-        // 		url: '/global/login/index'
-        // 	})
-        // }
+
       }
     })
   },

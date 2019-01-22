@@ -1,0 +1,15 @@
+
+
+请记得更改LoginDemo中project.config.json里面的appID哦
+
+
+项目结构：
+
+1、LoginDemo为小程序登录demo
+
+2、MiniProgramServer为后台服务器demo
+
+3、libs目录下为SSM框架所需jar包，如果不用maven管理项目，直接新建web工程也行，将此文件夹下的jar全部导入we项目下，
+按照MiniProgramServer中配置web.xml即可
+
+4、wx_login.sql为后台数据库脚本
