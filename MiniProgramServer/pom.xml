@@ -10,7 +10,7 @@
         <spring-version>4.3.15.RELEASE</spring-version>  
         <!-- mybatis版本号 -->  
         <mybatis-version>3.2.6</mybatis-version>  
-		<jackson-version>2.9.5</jackson-version> 
+		<jackson-version>2.9.8</jackson-version> 
     </properties> 
     
   <dependencies>
@@ -113,7 +113,7 @@
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
-			<version>0.9.5.2</version>
+			<version>0.9.5.3</version>
 		</dependency>
 		
 
